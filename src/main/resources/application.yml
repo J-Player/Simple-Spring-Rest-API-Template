@@ -1,0 +1,14 @@
+# Spring Boot - Common Server Properties
+# https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+
+spring:
+  datasource:
+    url: # URL_HERE
+    username: # USERNAME_HERE
+    password: # PASSWORD_HERE
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  error:
+    include-stacktrace: on_param

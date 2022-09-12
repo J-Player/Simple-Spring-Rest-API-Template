@@ -1,0 +1,35 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //SPRING DATA
+    implementation 'org.springframework.boot:spring-boot-starter-security' //SPRING SECURITY
+    implementation 'org.springframework.boot:spring-boot-starter-web' //SPRING WEB
+    compileOnly 'org.projectlombok:lombok' //LOMBOK
+    annotationProcessor 'org.projectlombok:lombok' //LOMBOK
+    implementation 'org.mapstruct:mapstruct:1.5.2.Final' //MAPSTRUCT
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final' //MAPSTRUCT
+    developmentOnly 'org.springframework.boot:spring-boot-devtools' //SPRING DEV-TOOLS
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' //SPRING TEST
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
