@@ -1,8 +1,8 @@
 package com.example.controllers;
 
 import com.example.domains.User;
-import com.example.requests.UserPostRequestBody;
-import com.example.requests.UserPutRequestBody;
+import com.example.domains.dto.UserDTO;
+import com.example.mappers.UserMapper;
 import com.example.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("users")
 @RequiredArgsConstructor
-public class UserController implements AbstractController<User, UserPostRequestBody, UserPutRequestBody, UUID> {
+public class UserController implements AbstractController<User, UserDTO, UUID> {
 
     private final UserService userService;
 
@@ -37,24 +37,24 @@ public class UserController implements AbstractController<User, UserPostRequestB
         return ResponseEntity.ok(userService.findAll(pageable));
     }
 
-    @PostMapping
     @Override
-    public ResponseEntity<User> save(@RequestBody UserPostRequestBody userPostRequestBody) {
-        return new ResponseEntity<>(userService.save(userPostRequestBody), HttpStatus.CREATED);
+    @PostMapping
+    public ResponseEntity<User> save(@RequestBody UserDTO userDTO) {
+        return new ResponseEntity<>(userService.save(UserMapper.INSTANCE.toUser(userDTO)), HttpStatus.CREATED);
     }
 
     @Override
-    @PutMapping
-    public ResponseEntity<Void> update(@RequestBody UserPutRequestBody userPutRequestBody) {
-        userService.update(userPutRequestBody);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@RequestBody UserDTO userDTO, @PathVariable UUID id) {
+        userService.update(UserMapper.INSTANCE.toUser(userDTO));
+        return ResponseEntity.noContent().build();
     }
 
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID uuid) {
         userService.delete(uuid);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
 
 }
