@@ -1,34 +1,35 @@
-package com.example.requests;
+package com.example.domains.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.UUID;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @Builder
 @AllArgsConstructor
-public class UserPutRequestBody {
+public class UserDTO {
 
-    private UUID id;
-
+    @NotEmpty
     private String username;
 
+    @NotEmpty
     private String password;
 
+    @NotEmpty
     private String authorities; //Ex.: "ROLE_ADMIN,ROLE_USER"
 
     @Builder.Default
-    boolean isAccountNonExpired = true;
+    private boolean isAccountNonExpired = true;
 
     @Builder.Default
-    boolean isAccountNonLocked = true;
+    private boolean isAccountNonLocked = true;
 
     @Builder.Default
-    boolean isCredentialsNonExpired = true;
+    private boolean isCredentialsNonExpired = true;
 
     @Builder.Default
-    boolean isEnabled = true;
+    private boolean isEnabled = true;
 
 }
