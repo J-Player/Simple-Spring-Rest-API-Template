@@ -21,6 +21,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //SPRING DATA
     implementation 'org.springframework.boot:spring-boot-starter-security' //SPRING SECURITY
+    implementation 'org.springframework.boot:spring-boot-starter-validation' //SPRING VALIDATION
     implementation 'org.springframework.boot:spring-boot-starter-web' //SPRING WEB
     compileOnly 'org.projectlombok:lombok' //LOMBOK
     annotationProcessor 'org.projectlombok:lombok' //LOMBOK
