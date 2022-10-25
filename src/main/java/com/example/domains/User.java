@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.UUID;
@@ -24,27 +25,30 @@ public class User implements UserDetails {
     @Id
     private UUID id;
 
+    @NotEmpty
     private String username;
 
+    @NotEmpty
     private String password;
 
+    @NotEmpty
     private String authorities; //Ex.: "ROLE_ADMIN,ROLE_USER"
 
     @Builder.Default
     @Column(name = "isAccountNonExpired")
-    boolean isAccountNonExpired = true;
+    private boolean isAccountNonExpired = true;
 
     @Builder.Default
     @Column(name = "isAccountNonLocked")
-    boolean isAccountNonLocked = true;
+    private boolean isAccountNonLocked = true;
 
     @Builder.Default
     @Column(name = "isCredentialsNonExpired")
-    boolean isCredentialsNonExpired = true;
+    private boolean isCredentialsNonExpired = true;
 
     @Builder.Default
     @Column(name = "isEnabled")
-    boolean isEnabled = true;
+    private boolean isEnabled = true;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
