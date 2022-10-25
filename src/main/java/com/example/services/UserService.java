@@ -2,10 +2,7 @@ package com.example.services;
 
 import com.example.domains.User;
 import com.example.exceptions.BadRequestException;
-import com.example.mappers.UserMapper;
 import com.example.repositories.UserRepository;
-import com.example.requests.UserPostRequestBody;
-import com.example.requests.UserPutRequestBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +16,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements AbstractService<User, UserPostRequestBody, UserPutRequestBody, UUID>, UserDetailsService {
+public class UserService implements AbstractService<User, UUID>, UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -46,14 +43,13 @@ public class UserService implements AbstractService<User, UserPostRequestBody, U
 
     @Override
     @Transactional
-    public User save(UserPostRequestBody userPostRequestBody) {
-        return userRepository.save(UserMapper.INSTANCE.toUser(userPostRequestBody));
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     @Override
-    public void update(UserPutRequestBody userPutRequestBody) {
-        User savedUser = findById(userPutRequestBody.getId());
-        User user = UserMapper.INSTANCE.toUser(userPutRequestBody);
+    public void update(User user) {
+        User savedUser = findById(user.getId());
         userRepository.save(user.withId(savedUser.getId()));
     }
 
