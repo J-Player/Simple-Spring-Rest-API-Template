@@ -1,7 +1,7 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.3'
+    id 'org.springframework.boot' version '2.7.5'
     id 'io.spring.dependency-management' version '1.1.0'
-    id 'java-library'
+    id 'java'
 }
 
 group = 'com.example'
@@ -25,8 +25,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web' //SPRING WEB
     compileOnly 'org.projectlombok:lombok' //LOMBOK
     annotationProcessor 'org.projectlombok:lombok' //LOMBOK
-    implementation 'org.mapstruct:mapstruct:1.5.2.Final' //MAPSTRUCT
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final' //MAPSTRUCT
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final' //MAPSTRUCT
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final' //MAPSTRUCT
     developmentOnly 'org.springframework.boot:spring-boot-devtools' //SPRING DEV-TOOLS
     testImplementation 'org.springframework.boot:spring-boot-starter-test' //SPRING TEST
 }
