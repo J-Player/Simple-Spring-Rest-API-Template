@@ -1,13 +1,14 @@
 package com.example.domains.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
-import javax.validation.constraints.NotEmpty;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
 
@@ -21,15 +22,15 @@ public class UserDTO {
     private String authorities; //Ex.: "ROLE_ADMIN,ROLE_USER"
 
     @Builder.Default
-    private boolean isAccountNonExpired = true;
+    private boolean accountNonExpired = true;
 
     @Builder.Default
-    private boolean isAccountNonLocked = true;
+    private boolean accountNonLocked = true;
 
     @Builder.Default
-    private boolean isCredentialsNonExpired = true;
+    private boolean caredentialsNonExpired = true;
 
     @Builder.Default
-    private boolean isEnabled = true;
+    private boolean enabled = true;
 
 }
