@@ -1,18 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.5'
+    id 'org.springframework.boot' version '3.0.2'
     id 'io.spring.dependency-management' version '1.1.0'
     id 'java'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
+sourceCompatibility = 17
 
 repositories {
     mavenCentral()
@@ -23,11 +17,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security' //SPRING SECURITY
     implementation 'org.springframework.boot:spring-boot-starter-validation' //SPRING VALIDATION
     implementation 'org.springframework.boot:spring-boot-starter-web' //SPRING WEB
+    developmentOnly 'org.springframework.boot:spring-boot-devtools' //SPRING DEV-TOOLS
+    compileOnly 'org.springdoc:springdoc-openapi-ui:1.6.14' //SPRINGDOC OPENAPI
     compileOnly 'org.projectlombok:lombok' //LOMBOK
     annotationProcessor 'org.projectlombok:lombok' //LOMBOK
     implementation 'org.mapstruct:mapstruct:1.5.3.Final' //MAPSTRUCT
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final' //MAPSTRUCT
-    developmentOnly 'org.springframework.boot:spring-boot-devtools' //SPRING DEV-TOOLS
     testImplementation 'org.springframework.boot:spring-boot-starter-test' //SPRING TEST
 }
 
