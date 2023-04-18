@@ -1,14 +1,14 @@
 package com.example.services;
 
-public interface IService<T> {
+public interface IService<T1, T2> {
 
-    T findById(Long id);
+    T1 findById(Long id);
 
-    Iterable<T> findAll();
+    Iterable<T1> findAll();
 
-    T save(T t);
+    T1 save(T2 t2);
 
-    void update(T t);
+    void update(T2 t2, Long id);
 
     void delete(Long id);
 

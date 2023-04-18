@@ -1,18 +1,21 @@
 package com.example.services;
 
 import com.example.domains.User;
-import com.example.exceptions.BadRequestException;
+import com.example.domains.dto.UserDTO;
 import com.example.repositories.UserRepository;
+import com.example.utils.MapperUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements IService<User>, UserDetailsService {
+public class UserService implements IService<User, UserDTO>, UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -39,15 +42,17 @@ public class UserService implements IService<User>, UserDetailsService {
 
     @Override
     @Transactional
-    public User save(User user) {
+    public User save(UserDTO userDTO) {
+        User user = MapperUtil.MAPPER.map(userDTO, User.class);
         return userRepository.save(user);
     }
 
     @Override
     @Transactional
-    public void update(User user) {
-        User savedUser = findById(user.getId());
-        userRepository.save(user.withId(savedUser.getId()));
+    public void update(UserDTO userDTO, Long id) {
+        User user = findById(id);
+        MapperUtil.MAPPER.map(userDTO, user);
+        userRepository.save(user);
     }
 
     @Override
@@ -55,8 +60,8 @@ public class UserService implements IService<User>, UserDetailsService {
         userRepository.deleteById(id);
     }
 
-    private BadRequestException getBadRequestException() {
-        return new BadRequestException("User not found");
+    private ResponseStatusException getBadRequestException() {
+        return new ResponseStatusException(HttpStatus.BAD_REQUEST,  "User not found");
     }
 
 }
