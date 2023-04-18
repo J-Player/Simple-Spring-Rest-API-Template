@@ -2,7 +2,6 @@ package com.example.controllers;
 
 import com.example.domains.User;
 import com.example.domains.dto.UserDTO;
-import com.example.mappers.UserMapper;
 import com.example.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -41,14 +40,14 @@ public class UserController implements IController<User, UserDTO> {
     @PostMapping
     @Operation(summary = "Saves a user in the database.")
     public ResponseEntity<User> save(@RequestBody UserDTO userDTO) {
-        return new ResponseEntity<>(userService.save(UserMapper.INSTANCE.toUser(userDTO)), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.save(userDTO), HttpStatus.CREATED);
     }
 
     @Override
     @PutMapping("/{id}")
     @Operation(summary = "Updates a user in the database.")
     public ResponseEntity<Void> update(@RequestBody UserDTO userDTO, @PathVariable Long id) {
-        userService.update(UserMapper.INSTANCE.toUser(userDTO).withId(id));
+        userService.update(userDTO, id);
         return ResponseEntity.noContent().build();
     }
 
