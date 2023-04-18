@@ -18,11 +18,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation' //SPRING VALIDATION
     implementation 'org.springframework.boot:spring-boot-starter-web' //SPRING WEB
     developmentOnly 'org.springframework.boot:spring-boot-devtools' //SPRING DEV-TOOLS
-    compileOnly 'org.springdoc:springdoc-openapi-ui:1.6.14' //SPRINGDOC OPENAPI
+    compileOnly 'org.springdoc:springdoc-openapi-ui:1.6.15' //SPRINGDOC OPENAPI
     compileOnly 'org.projectlombok:lombok' //LOMBOK
     annotationProcessor 'org.projectlombok:lombok' //LOMBOK
-    implementation 'org.mapstruct:mapstruct:1.5.3.Final' //MAPSTRUCT
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final' //MAPSTRUCT
+    implementation 'org.modelmapper:modelmapper:3.1.1' //MODELMAPPER
     testImplementation 'org.springframework.boot:spring-boot-starter-test' //SPRING TEST
 }
 
